@@ -44,7 +44,7 @@
         }  
         .card p {  
             font-size: 1.1rem;  
-            line-height: 1.6;  
+            line-height: 1.5; /* 修改为1.5倍行距 */  
             margin-bottom: 20px;  
         }  
         .card a {  
@@ -176,11 +176,13 @@
             </p>  
             <ol>  
                 <li>  
-                    回归：给定一个问题与对应的视频，挑战者需要给出用时间戳表示的视频片段，确保这个片段是回答相应问题的。  
+                    回归：给定一个问题与对应的视频，挑战者需要给出用时间戳表示的视频片段，确保这个片段是回答相应问题的。 
+                    <p></p>
                     <img src="https://github.com/Med-M3-Dataset/Med-M3/raw/main/Task1.png" alt="Task1">  
                 </li>  
                 <li>  
                     筛选与回归：给定一个问题与多个视频，挑战者需要找出主题符合问题描述的视频，然后给出用时间戳表示的视频片段，确保这个片段是回答相应问题的。  
+                    <p></p>
                     <img src="https://github.com/Med-M3-Dataset/Med-M3/raw/main/Task2.png" alt="Task2">  
                 </li>  
             </ol>  
@@ -192,8 +194,8 @@
                 为了方便使用，我们额外提供了字幕文件以及我们构建出的知识图谱架构以作参考，当然，您在使用数据集时也可以自行生成此类信息输入给模型。  
             </p>  
             <ul>  
-                <li>字幕存储在 <a href="https://github.com/Med-M3-Dataset/Med-M3/blob/main/Subtitles.json">Subtitles.json</a> 文件(由于文件大小超过了Github的大小限制,因此进行了分卷压缩)中。</li>  
-                <li>知识图谱存储在 <a href="https://github.com/Med-M3-Dataset/Med-M3/blob/main/KnowledgeGraph.json">KnowledgeGraph.json</a> 文件中。</li>  
+                <li>字幕存储在 <a href="https://github.com/Med-M3-Dataset/Med-M3/Subtitles.json">Subtitles.json</a> 文件(由于文件大小超过了Github的大小限制,因此进行了分卷压缩)中。</li>  
+                <li>知识图谱存储在 <a href="https://github.com/Med-M3-Dataset/Med-M3/KnowledgeGraph.json">KnowledgeGraph.json</a> 文件中。</li>  
             </ul>  
         </section>  
     </div>  
