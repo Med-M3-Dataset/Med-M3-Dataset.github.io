@@ -3,7 +3,7 @@
 <head>  
     <meta charset="UTF-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Med-M3 数据集</title>  
+    <title>Med-M3 Dataset</title>  
     <link rel="stylesheet" href="https://cdn.tailwindcss.com">  
     <style>  
         body {  
@@ -44,7 +44,7 @@
         }  
         .card p {  
             font-size: 1.1rem;  
-            line-height: 1.6;  
+            line-height: 1.5; /* 修改为1.5倍行距 */  
             margin-bottom: 20px;  
         }  
         .card a {  
@@ -92,51 +92,50 @@
 <body>  
     <header class="header">  
         <div class="container">  
-            <h1>Med-M3 数据集</h1>  
-            <p>一个多语言、多模态、多跳的医学视频数据集</p>  
+            <h1>Med-M3 Dataset</h1>  
+            <p>Med-M3 Dataset: A Medical Video Dataset with Multi-lingual, Multi-model and Multi-hop</p>  
             <div>  
                 <a href="https://Med-M3-Dataset.github.io/index.html">中文</a>  
                 <span>|</span>  
-                <a href="https://Med-M3-Dataset.github.io/index_English.html">English</a>    
+                <a href="https://Med-M3-Dataset.github.io/index_English.html">English</a>  
             </div>  
         </div>  
-    </header>  
+    </header>   
 
     <div class="container">  
         <section class="card">  
-            <h2>总览</h2>  
+            <h2>Overview</h2>  
             <p>  
-                本数据集是一个中英双语的大规模视频数据集，其多模态性质不仅体现于有视频输入信息，还包括我们精心设计的部分需要模型拥有跨模态知识图谱构建与多跳思考能力才能解答的问题，此类问题被称为"复杂问题"，相对应的是"简单问题"。具体的解释可参阅我们的论文。  
-            </p>  
-            <a href="https://example.com">论文链接</a>  
+                This dataset is a large-scale video dataset in Chinese and English, and its multimodal feature is not only reflected in the video input information, but also includes some of the questions that we have designed to be solved by the model that require cross-modal knowledge graph construction and multi-hop thinking ability, which are called "complex questions", and correspond to "simple questions".            </p>  
+            <a href="https://example.com">Paper</a>  
         </section>  
 
         <section class="card">  
-            <h2>数据</h2>  
+            <h2>Dataset</h2>  
             <p>  
-                我们对数据进行的标记存储在 <a href="https://github.com/Med-M3-Dataset/Med-M3/blob/main/MedM3.json">MedM3.json</a> 文件中。  
+                The annotation data is stored in <a href="https://github.com/Med-M3-Dataset/Med-M3/MedM3.json">MedM3.json</a> 文件中。  
             </p>  
 
-            <h3>数据统计</h3>  
+            <h3>Dataset Statistics</h3>  
             <div class="table-responsive">  
                 <table class="data-table">  
                     <thead>  
                         <tr>  
                             <th></th>  
-                            <th>视频</th>  
-                            <th>简单问题</th>  
-                            <th>复杂问题</th>  
+                            <th>Videos</th>  
+                            <th>Simple Questions</th>  
+                            <th>Complex Questions</th>  
                         </tr>  
                     </thead>  
                     <tbody>  
                         <tr>  
-                            <td>中文</td>  
+                            <td>Chinese</td>  
                             <td>1628 (159.06h)</td>  
                             <td>3208</td>  
                             <td>2746</td>  
                         </tr>  
                         <tr>  
-                            <td>英文</td>  
+                            <td>English</td>  
                             <td>2120 (204.15h)</td>  
                             <td>3496</td>  
                             <td>3297</td>  
@@ -145,7 +144,7 @@
                 </table>  
             </div>  
 
-            <h3>数据格式</h3>  
+            <h3>Dataset Formats</h3>  
             <pre class="code-block">  
                 <code>  
 {  
@@ -160,55 +159,53 @@
                 </code>  
             </pre>  
             <ul>  
-                <li>"id"字段是问题的ID</li>  
-                <p></p>
-                <li>"video_id"字段是YouTube上的视频ID，由于YouTube政策等原因，我们无法直接提供视频本身，请通过 <a href="https://github.com/pytube/pytube">PyTube</a> 等方式自行下载。</li>  
-                <li>"question"字段是问题的具体内容。</li>  
-                <li>"start"和"end"字段是两个视频的时间戳，指的是视频中可用于回答上述问题的视频片段的开始秒数与结束秒数。</li>  
-                <li>"complex"字段指问题是否为复杂问题。该字段为0时指该问题为简单问题，该字段为1时指该问题为复杂问题。</li>  
-                <li>"language"指该问题的语言。</li>  
+                <li>The "id" field is the ID of the question.</li>  
+                <li>The "video_id" field is the video ID on YouTube, due to YouTube policy and other reasons, we cannot provide the video itself directly, please download it yourself through <a href="https://github.com/pytube/pytube">PyTube</a> or other ways to get.</li>  
+                <li>The "question" field is the specific content of the question.</li>  
+                <li>The "start" and "end" fields are the timestamps of the two videos, which refer to the number of start seconds and the end seconds of the video clip in the video that can be used to answer the above questions.</li>  
+                <li>The "complex" field indicates whether the problem is complex or not. A field of 0 indicates that the problem is simple, and a field of 1 indicates that the problem is complex.</li>  
+                <li>"language" refers to the language of the question.</li>  
             </ul>  
         </section>  
 
         <section class="card">  
-            <h2>任务</h2>  
+            <h2>Tasks</h2>  
             <p>  
-                我们为该数据集设计了两个任务，分别是：  
+                We designed two tasks for this dataset:
             </p>  
             <ol>  
                 <li>  
-                    回归：给定一个问题与对应的视频，挑战者需要给出用时间戳表示的视频片段，确保这个片段是回答相应问题的。  
+                    Retrieval: Given a question and a corresponding video, the challenger needs to give a time-stamped video clip to ensure that the clip answers the corresponding question, as shown in the image:             <p></p>
                     <img src="https://github.com/Med-M3-Dataset/Med-M3/raw/main/Task1.png" alt="Task1">  
                 </li>  
                 <li>  
-                    筛选与回归：给定一个问题与多个视频，挑战者需要找出主题符合问题描述的视频，然后给出用时间戳表示的视频片段，确保这个片段是回答相应问题的。  
+                    Choosing and Retrieval: Given a question and multiple videos, the challenger needs to find a video with a topic that matches the description of the question, and then give a time-stamped video clip to make sure that the clip answers the corresponding question, as shown in the image:                    <p></p>
                     <img src="https://github.com/Med-M3-Dataset/Med-M3/raw/main/Task2.png" alt="Task2">  
                 </li>  
             </ol>  
         </section>  
 
         <section class="card">  
-            <h2>其他文件</h2>  
+            <h2>Other Files</h2>  
             <p>  
-                为了方便使用，我们额外提供了字幕文件以及我们构建出的知识图谱架构以作参考，当然，您在使用数据集时也可以自行生成此类信息输入给模型。  
-            </p>  
+                For ease of use, we provide additional subtitle files and the knowledge graph schema we have built for reference, of course, you can also generate your own information to input to the model when using the dataset.            </p>  
             <ul>  
-                <li>字幕存储在 <a href="https://github.com/Med-M3-Dataset/Med-M3/blob/main/Subtitles.json">Subtitles.json</a> 文件(由于文件大小超过了Github的大小限制,因此进行了分卷压缩)中。</li>  
-                <li>知识图谱存储在 <a href="https://github.com/Med-M3-Dataset/Med-M3/blob/main/KnowledgeGraph.json">KnowledgeGraph.json</a> 文件中。</li>  
+                <li>Subtitles are stored in <a href="https://github.com/Med-M3-Dataset/Med-M3/Subtitles.json">Subtitles.json</a> (compressed in volumes because the file size exceeds Github's size limit). </li>  
+                <li>The knowledge graph is stored in <a href="https://github.com/Med-M3-Dataset/Med-M3/KnowledgeGraph.json">KnowledgeGraph.json</a> .</li>  
             </ul>  
         </section>  
     </div>  
 
     <footer class="footer">  
         <div class="container">  
-            <h2>联系我们</h2>  
+            <h2>Contact</h2>  
             <p>  
-                如果您对本数据集有任何疑问或建议，可以通过邮件联系论文作者：  
-                <a href="mailto:liushenxi@bit.edu.cn">liushenxi@bit.edu.cn</a> 或  
+                If you have any questions or suggestions about this dataset, you can contact the authors by e-mail:  
+                <a href="mailto:liushenxi@bit.edu.cn">liushenxi@bit.edu.cn</a> or  
                 <a href="mailto:liushenxi@foxmail.com">liushenxi@foxmail.com</a>  
             </p>  
             <p>  
-                如果您使用了我们的工作，请以如下格式引用我们的论文：  
+                If you have used our work, please cite our paper in the format below: 
             </p>  
         </div>  
     </footer>  
