@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Med-M3 数据集</title>
+    <link rel="stylesheet" href="https://cdn.tailwindcss.com">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8fafc;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        p {
+            color: #34495e;
+        }
+        a {
+            color: #2980b9;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .header {
+            background: #2980b9;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 3rem;
+        }
+        .header p {
+            font-size: 1.2rem;
+        }
+        .footer {
+            background: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Med-M3 数据集</h1>
+        <p>一个多语言、多模态、多跳的医学视频数据集</p>
+        <div class="mt-4">
+            <a href="https://github.com/Med-M3-Dataset/Med-M3/blob/main/README.md" class="mx-2">中文</a>
+            <span class="mx-2">|</span>
+            <a href="https://github.com/Med-M3-Dataset/Med-M3/blob/main/README_English.md" class="mx-2">English</a>
+        </div>
+    </header>
+
+    <div class="container mx-auto py-8 px-4">
+        <div class="card">
+            <h2 class="text-2xl font-semibold mb-4">总览</h2>
+            <p class="mb-4">
+                本数据集是一个中英双语的大规模视频数据集，其多模态性质不仅体现于有视频输入信息，还包括我们精心设计的部分需要模型拥有跨模态知识图谱构建与多跳思考能力才能解答的问题，此类问题被称为"复杂问题"，相对应的是"简单问题"。具体的解释可参阅我们的论文。
+            </p>
+            <a href="https://example.com" class="text-blue-500 hover:underline">论文链接</a>
+        </div>
+
+        <div class="card">
+            <h2 class="text-2xl font-semibold mb-4">数据</h2>
+            <p class="mb-4">
+                我们对数据进行的标记存储在 <a href="https://github.com/Med-M3-Dataset/Med-M3/blob/main/MedM3.json" class="text-blue-500 hover:underline">MedM3.json</a> 文件中。
+            </p>
+
+            <h3 class="text-lg font-semibold mb-2">数据统计</h3>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead>
+                        <tr>
+                            <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
+                            <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">视频</th>
+                            <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">简单问题</th>
+                            <th class="px-6 py-3 bg-gray-100 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">复杂问题</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">中文</td>
+                            <td class="px-6 py-4 whitespace-nowrap">1628 (159.06h)</td>
+                            <td class="px-6 py-4 whitespace-nowrap">3208</td>
+                            <td class="px-6 py-4 whitespace-nowrap">2746</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">英文</td>
+                            <td class="px-6 py-4 whitespace-nowrap">2120 (204.15h)</td>
+                            <td class="px-6 py-4 whitespace-nowrap">3496</td>
+                            <td class="px-6 py-4 whitespace-nowrap">3297</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="text-lg font-semibold mt-4 mb-2">数据格式</h3>
+            <pre class="bg-gray-100 rounded p-3 text-sm">
+                <code>
+{
+    "id": 1,
+    "video_id": "Gm9UTA9jmdU",
+    "question": "如何通过脚趾和跟腱的拉伸来纠正扁平足？",
+    "start": 451,
+    "end": 484,
+    "complex": 0,
+    "language": "Chinese"
+}
+                </code>
+            </pre>
+            <ul class="list-disc pl-5">
+                <li>"id"字段是问题的ID</li>
+                <li>"video_id"字段是YouTube上的视频ID，由于YouTube政策等原因，我们无法直接提供视频本身，请通过 <a href="https://github.com/pytube/pytube" class="text-blue-500 hover:underline">PyTube</a> 等方式自行下载。</li>
+                <li>"question"字段是问题的具体内容。</li>
+                <li>"start"和"end"字段是两个视频的时间戳，指的是视频中可用于回答上述问题的视频片段的开始秒数与结束秒数。</li>
+                <li>"complex"字段指问题是否为复杂问题。该字段为0时指该问题为简单问题，该字段为1时指该问题为复杂问题。</li>
+                <li>"language"指该问题的语言。</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2 class="text-2xl font-semibold mb-4">任务</h2>
+            <p class="mb-4">
+                我们为该数据集设计了两个任务，分别是：
+            </p>
+            <ol class="list-decimal pl-5">
+                <li>
+                    回归：给定一个问题与对应的视频，挑战者需要给出用时间戳表示的视频片段，确保这个片段是回答相应问题的。
+                    <img src="https://github.com/Med-M3-Dataset/Med-M3/raw/main/Task1.png" alt="Task1" class="my-2">
+                </li>
+                <li>
+                    筛选与回归：给定一个问题与多个视频，挑战者需要找出主题符合问题描述的视频，然后给出用时间戳表示的视频片段，确保这个片段是回答相应问题的。
+                    <img src="https://github.com/Med-M3-Dataset/Med-M3/raw/main/Task2.png" alt="Task2" class="my-2">
+                </li>
+            </ol>
+        </div>
+
+        <div class="card">
+            <h2 class="text-2xl font-semibold mb-4">其他文件</h2>
+            <p class="mb-4">
+                为了方便使用，我们额外提供了字幕文件以及我们构建出的知识图谱架构以作参考，当然，您在使用数据集时也可以自行生成此类信息输入给模型。
+            </p>
+            <ul class="list-disc pl-5">
+                <li>字幕存储在 <a href="https://github.com/Med-M3-Dataset/Med-M3/blob/main/Subtitles.json" class="text-blue-500 hover:underline">Subtitles.json</a> 文件(由于文件大小超过了Github的大小限制，因此进行了分卷压缩)中。</li>
+                <li>知识图谱存储在 <a href="https://github.com/Med-M3-Dataset/Med-M3/blob/main/KnowledgeGraph.json" class="text-blue-500 hover:underline">KnowledgeGraph.json</a> 文件中。</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <h2 class="text-2xl font-semibold mb-4">联系我们</h2>
+        <p class="mb-2">
+            如果您对本数据集有任何疑问或建议，可以通过邮件联系论文作者：
+            <a href="mailto:liushenxi@bit.edu.cn" class="text-blue-500 hover:underline">liushenxi@bit.edu.cn</a> 或
+            <a href="mailto:liushenxi@foxmail.com" class="text-blue-500 hover:underline">liushenxi@foxmail.com</a>
+        </p>
+        <p>
+            如果您使用了我们的工作，请以如下格式引用我们的论文：
+        </p>
+    </footer>
+</body>
+</html>
+
