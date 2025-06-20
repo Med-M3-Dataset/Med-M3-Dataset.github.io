@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M3-Med: 多语言、多模态、多跳推理医疗教学视频理解基准</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+
+    <div class="container mx-auto p-8 relative">
+        <div class="absolute top-8 right-8">
+            <a href="./English.html" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300">English</a>
+        </div>
+
+        <header class="text-center mb-12 pt-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">M3-Med: 多语言、多模态、多跳推理医疗教学视频理解基准</h1>
+            <p class="text-xl text-gray-600">A Benchmark for Multi-lingual, Multi-modal, and Multi-hop Reasoning in Medical Instructional Video Understanding</p>
+        </header>
+
+        <main>
+            <!-- Abstract Section -->
+            <section class="mb-12 bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b-2 border-blue-500 pb-2">摘要</h2>
+                <p class="text-gray-700 leading-relaxed">随着人工智能在多模态理解方面的进步，视频理解和定位技术在医学教学等专业领域的应用潜力迅速增长。然而，现有基准测试大多集中在英文语料库，并主要关注字幕的检索，限制了对模型深度推理能力的评估。为了解决这些问题，我们提出了M3-Med，这是第一个用于医疗教学视频理解的多语言、多模态、多跳推理基准。该基准由医学专家团队构建，包含一系列医学问题和相应的视频片段作为答案，并创新性地将问题分为简单问题和复杂问题。解决复杂问题需要模型具备构建跨模态知识图谱并进行多跳推理的能力。实验结果表明，M3-Med对现有顶尖模型构成了显著挑战，证明了其作为评估工具的有效性。</p>
+            </section>
+
+            <!-- Dataset Acquisition Section -->
+            <section class="mb-12 bg-white p-8 rounded-lg shadow-md text-center">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b-2 border-green-500 pb-2">数据集获取</h2>
+                <p class="text-gray-700 leading-relaxed mb-6">点击下方按钮下载完整的数据集。文件为 .zip 格式。</p>
+                <a href="M3Med.zip" class="inline-block bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block mr-2 align-middle"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    下载 M3-Med 数据集 (M3Med.zip)
+                </a>
+            </section>
+            
+            <!-- News Section -->
+            <section class="mb-12 bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b-2 border-blue-500 pb-2">最新动态</h2>
+                <ul class="list-disc list-inside text-gray-700 space-y-3">
+                    <li><span class="font-semibold text-gray-800">[2025-06-13]</span> 以此数据集衍生的NLPCC 2025 Shared Task 4 发布,详见<a href="https://openreview.net/pdf?id=0wlIheA4bO" class="text-blue-500 hover:underline" target="_blank">NLPCC 2025 Shared Task 4</a> 🎉🎉🎉 </li>
+                 </ul>
+            </section>
+
+            <!-- Key Features Section -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">主要特点</h2>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="text-blue-500 mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><path d="M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v2"/><path d="M2 16v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2"/><path d="M6 12h12"/></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">多跳推理</h3>
+                        <p class="text-gray-600">引入复杂问题，要求模型进行多跳推理，而不仅仅是文本匹配。</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="text-blue-500 mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">多模态</h3>
+                        <p class="text-gray-600">结合视频视觉信息和文本字幕，评估跨模态理解能力。</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="text-blue-500 mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path><line x1="2" y1="12" x2="22" y2="12"></line></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">多语言</h3>
+                        <p class="text-gray-600">包含中文和英文两种语言，满足全球医学研究的需求。</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Question Examples Section -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">问题示例</h2>
+                <div class="grid md:grid-cols-2 gap-8 items-start">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-4 text-center">简单问题</h3>
+                        <div class="w-full bg-gray-200 rounded-lg overflow-hidden mb-4">
+                            <img src="./SimpleQuestions.png" alt="简单问题示例图" class="w-full h-full object-cover">
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">简单问题通常可以直接从视频的某一连续片段中找到答案。</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-4 text-center">复杂问题</h3>
+                        <div class="w-full bg-gray-200 rounded-lg overflow-hidden mb-4">
+                            <img src="./ComplexQuestions.png" alt="复杂问题示例图" class="w-full h-full object-cover">
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">复杂问题则需要模型具备更深层次的理解和推理能力。需要模型整合信息，进行“多跳”推理。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dataset Construction -->
+            <section class="mb-12 bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b-2 border-blue-500 pb-2">基准构建</h2>
+                <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                    <li><strong>视频收集:</strong> 从YouTube等平台筛选与医学教学高度相关的视频。</li>
+                    <li><strong>字幕构建:</strong> 使用Whisper模型生成SRT格式的字幕文件。</li>
+                    <li><strong>问题编写与审核:</strong> 由专业医生编写问题，并经过团队严格审核。</li>
+                    <li><strong>时间戳标记与校验:</strong> 标记问题对应的答案视频片段，并通过交叉备注和一致性检验确保质量。</li>
+                </ol>
+            </section>
+        </main>
+
+        <!-- <footer class="text-center mt-12 text-gray-500">
+            <p>该网页根据论文 "M3-Med: A Benchmark for Multi-lingual, Multi-modal, and Multi-hop Reasoning in Medical Instructional Video Understanding" 生成。</p>
+            <p>基准数据集可在 <a href="https://Med-M3-Dataset.github.io/" class="text-blue-500 hover:underline" target="_blank">https://Med-M3-Dataset.github.io/</a> 获取。</p>
+        </footer> -->
+    </div>
+<script>window.parent.postMessage({ action: "ready" }, "*"); 
+ 
+window.console = new Proxy(console, {
+  get(target, prop) {
+    if (['log', 'warn', 'error'].includes(prop)) {
+      return new Proxy(target[prop], {
+        apply(fn, thisArg, args) {
+          fn.apply(thisArg, args);
+          window.parent.postMessage({ action: 'console', 
+            type: prop, 
+            args: args.map((arg) => {
+              try {
+                return JSON.stringify(arg).replace(/^["']|["']$/g, '');
+              } catch (e) {
+                return arg;
+              }
+            }) 
+          }, '*');
+        }
+      });
+    }
+    return target[prop];
+  }
+});
+</script></body>
+</html>

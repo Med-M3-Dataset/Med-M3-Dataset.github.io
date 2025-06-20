@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M3-Med: 多语言、多模态、多跳推理医疗教学视频理解基准</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+
+    <div class="container mx-auto p-8 relative">
+        <div class="absolute top-8 right-8">
+            <a href="./index.html" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300">中文</a>
+        </div>
+
+        <header class="text-center mb-12 pt-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">A Benchmark for Multi-lingual, Multi-modal, and Multi-hop Reasoning in Medical Instructional Video Understanding</h1>
+            <!-- <p class="text-xl text-gray-600">A Benchmark for Multi-lingual, Multi-modal, and Multi-hop Reasoning in Medical Instructional Video Understanding</p> -->
+        </header>
+
+        <main>
+            <!-- Abstract Section -->
+            <section class="mb-12 bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b-2 border-blue-500 pb-2">Abstract</h2>
+                <p class="text-gray-700 leading-relaxed">With the progress of artificial intelligence (AI) in multi-modal understanding, the application potential of video understanding and localization technology in professional fields such as medical teaching is increasing rapidly. So, the need for benchmarks to test the video understanding and localization capabilities of AI models appears. However, existing such benchmarks always focus on the English corpus, ignoring the needs of global medicine. Also, they mostly focus on the retrieval of subtitles, and the models can achieve good results only through one-step text matching or shallow semantic understanding, which limits the evaluation of the models’ ability. To address those problems, we propose M3-Med, the first benchmark for multi lingual, multi-modal, multi-hop reasoning in medical instructional video understanding. This benchmark is constructed by a team of medical experts, containing a series of medical questions and corresponding video segments as answers. The core innovation is that we divide the questions into two categories: simple questions and complex questions. To solve complex questions correctly, the model must have the ability to construct a cross-modal knowledge graph (KG) that connects visual and textual elements, and perform multi hop reasoning. Referring to a similar benchmark, we designed two tasks: Temporal Answer Grounding in Singe Video (TAGSV) and Temporal Answer Grounding in Video Corpus (TAGVC). We have tested several advanced models, including text-only large language models (LLMs) and multi-modal large language models (MLLMs), and human challengers on two tasks of this benchmark. The results show that M3-Med maintains a high degree of alignment with human judgment, posing a significant challenge to the existing state-of-the art models, especially for complex problems. This proves the effectiveness of M3-Med as an evaluation tool and reveals the limitations of current AI models in complex cross-modal reasoning capabilities. We believe that M3-Med will be a valuable resource to drive the next generation of video intelligence.</p>
+            </section>
+
+            <!-- Dataset Acquisition Section -->
+            <section class="mb-12 bg-white p-8 rounded-lg shadow-md text-center">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b-2 border-green-500 pb-2">Dataset Access</h2>
+                <p class="text-gray-700 leading-relaxed mb-6">Click the button below to download the complete dataset. The file is in .zip format.</p>
+                <a href="M3Med.zip" class="inline-block bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block mr-2 align-middle"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Download M3-Med Dataset (M3Med.zip)
+                </a>
+            </section>
+            
+            <!-- News Section -->
+            <section class="mb-12 bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b-2 border-blue-500 pb-2">Latest News</h2>
+                <ul class="list-disc list-inside text-gray-700 space-y-3">
+                    <li><span class="font-semibold text-gray-800">[2025-06-13]</span> NLPCC 2025 Shared Task 4, derived from this dataset, has been released. For details, see <a href="https://openreview.net/pdf?id=0wlIheA4bO" class="text-blue-500 hover:underline" target="_blank">NLPCC 2025 Shared Task 4</a> 🎉🎉🎉 </li>
+                 </ul>
+            </section>
+
+            <!-- Key Features Section -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Main Features</h2>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="text-blue-500 mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><path d="M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v2"/><path d="M2 16v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2"/><path d="M6 12h12"/></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Multi-hop Reasoning</h3>
+                        <p class="text-gray-600">Introduces complex questions that require the model to perform multi-hop reasoning, not just text matching.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="text-blue-500 mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Multi-modal</h3>
+                        <p class="text-gray-600">Combines video visual information and text subtitles to evaluate cross-modal understanding capabilities.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="text-blue-500 mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path><line x1="2" y1="12" x2="22" y2="12"></line></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Multi-lingual</h3>
+                        <p class="text-gray-600">Includes both Chinese and English to meet the needs of global medical research.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Question Examples Section -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Question Examples</h2>
+                <div class="grid md:grid-cols-2 gap-8 items-start">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-4 text-center">Simple Questions</h3>
+                        <div class="w-full bg-gray-200 rounded-lg overflow-hidden mb-4">
+                            <img src="./SimpleQuestions.png" alt="简单问题示例图" class="w-full h-full object-cover">
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">Answers to simple questions can usually be found in a continuous segment of the video.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-4 text-center">Complex Questions</h3>
+                        <div class="w-full bg-gray-200 rounded-lg overflow-hidden mb-4">
+                            <img src="./ComplexQuestions.png" alt="复杂问题示例图" class="w-full h-full object-cover">
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">Complex questions require the model to have a deeper level of understanding and reasoning. The model needs to integrate information and perform "multi-hop" reasoning.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dataset Construction -->
+            <section class="mb-12 bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b-2 border-blue-500 pb-2">Benchmark Construction</h2>
+                <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                    <li><strong>Video Collection:</strong> Highly relevant medical teaching videos were selected from platforms like YouTube.</li>
+                    <li><strong>Subtitle Construction:</strong> SRT format subtitle files were generated using the Whisper model.</li>
+                    <li><strong>Question Writing and Review:</strong> Questions were written by professional doctors and rigorously reviewed by the team.</li>
+                    <li><strong>Time-stamp Marking and Verification: </strong> The video segments corresponding to the answers were marked with timestamps, and quality was ensured through cross-referencing and consistency checks.</li>
+                </ol>
+            </section>
+        </main>
+
+        <!-- <footer class="text-center mt-12 text-gray-500">
+            <p>该网页根据论文 "M3-Med: A Benchmark for Multi-lingual, Multi-modal, and Multi-hop Reasoning in Medical Instructional Video Understanding" 生成。</p>
+            <p>基准数据集可在 <a href="https://Med-M3-Dataset.github.io/" class="text-blue-500 hover:underline" target="_blank">https://Med-M3-Dataset.github.io/</a> 获取。</p>
+        </footer> -->
+    </div>
+<script>window.parent.postMessage({ action: "ready" }, "*"); 
+ 
+window.console = new Proxy(console, {
+  get(target, prop) {
+    if (['log', 'warn', 'error'].includes(prop)) {
+      return new Proxy(target[prop], {
+        apply(fn, thisArg, args) {
+          fn.apply(thisArg, args);
+          window.parent.postMessage({ action: 'console', 
+            type: prop, 
+            args: args.map((arg) => {
+              try {
+                return JSON.stringify(arg).replace(/^["']|["']$/g, '');
+              } catch (e) {
+                return arg;
+              }
+            }) 
+          }, '*');
+        }
+      });
+    }
+    return target[prop];
+  }
+});
+</script></body>
+</html>
