@@ -1,243 +1,407 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Med-CRAFT: Automated Construction of Interpretable and Multi-Hop Video Workloads</title>
+    <title>Med-CRAFT: Automated Video Workloads Construction</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        body {
-            font-family: 'Georgia', serif;
+        /* Custom styles for grid background */
+        .bg-grid-slate-100 {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='%23f1f5f9'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
         }
-        .section-title {
-            border-bottom: 2px solid #3b82f6;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .author-link:hover {
-            color: #2563eb;
-            text-decoration: underline;
-        }
-        .button-primary {
-            transition: all 0.3s ease;
-        }
-        .button-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        .glass-nav {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Header -->
-    <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
-        <div class="max-w-5xl mx-auto px-6">
-            <h1 class="text-4xl font-bold mb-4 text-center">Med-CRAFT</h1>
-            <h2 class="text-2xl mb-6 text-center font-light">Automated Construction of Interpretable and Multi-Hop Video Workloads via Knowledge Graph Traversal</h2>
+<body class="font-sans text-slate-900 bg-slate-50 antialiased selection:bg-blue-100 selection:text-blue-900">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 z-50 w-full border-b border-slate-200 glass-nav">
+        <div class="container mx-auto flex h-16 items-center justify-between px-4 lg:px-8">
+            <div class="flex items-center gap-2 font-bold text-xl text-blue-700">
+                <i data-lucide="network" class="h-6 w-6"></i>
+                <span>Med-CRAFT</span>
+            </div>
             
-            <!-- Conference Info -->
-            <!-- <div class="text-center mb-8">
-                <span class="bg-white text-blue-600 px-4 py-2 rounded-full font-semibold">PVLDB 2026</span>
-            </div> -->
-            
-            <!-- Authors -->
-            <div class="text-center space-y-2">
-                <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
-                    <span class="author-link cursor-pointer">Shenxi Liu<sup>1</sup></span>
-                    <span class="author-link cursor-pointer">Kan Li<sup>1</sup></span>
-                    <span class="author-link cursor-pointer">Mingyang Zhao<sup>2</sup></span>
-                    <span class="author-link cursor-pointer">Yuhang Tian<sup>1</sup></span>
-                    <span class="author-link cursor-pointer">Shoujun Zhou<sup>3</sup></span>
-                    <span class="author-link cursor-pointer">Bin Li<sup>3</sup></span>
+            <div class="flex items-center gap-6">
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex gap-6 text-sm font-medium text-slate-600">
+                    <a href="#home" class="hover:text-blue-600 transition-colors" data-i18n="nav.home">Home</a>
+                    <a href="#paper" class="hover:text-blue-600 transition-colors" data-i18n="nav.paper">Paper</a>
+                    <a href="#dataset" class="hover:text-blue-600 transition-colors" data-i18n="nav.dataset">Dataset</a>
+                    <a href="#team" class="hover:text-blue-600 transition-colors" data-i18n="nav.team">Team</a>
                 </div>
-                <div class="text-sm mt-4 space-y-1">
-                    <div><sup>1</sup>Beijing Institute of Technology</div>
-                    <div><sup>2</sup>The Hong Kong Polytechnic University</div>
-                    <div><sup>3</sup>Shenzhen Institute of Advanced Technology, Chinese Academy of Sciences</div>
+                
+                <!-- Language Toggle -->
+                <div class="flex items-center gap-1 bg-slate-100 rounded-full p-1 border border-slate-200">
+                    <button onclick="setLang('en')" id="btn-en" class="px-3 py-1 text-xs font-bold rounded-full transition-all bg-white shadow-sm text-blue-700">
+                        EN
+                    </button>
+                    <button onclick="setLang('zh')" id="btn-zh" class="px-3 py-1 text-xs font-medium rounded-full transition-all text-slate-500 hover:text-slate-900">
+                        中
+                    </button>
                 </div>
             </div>
         </div>
-    </div>
+    </nav>
 
-    <!-- Main Content -->
-    <div class="max-w-5xl mx-auto px-6 py-12">
-        
-        <!-- Action Buttons -->
-        <div class="flex flex-wrap justify-center gap-4 mb-12">
-            <a href="./index.html" target="_blank" class="button-primary bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg flex items-center gap-2">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                </svg>
-                Project Page
-            </a>
-            <a href="#" class="button-primary bg-red-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg flex items-center gap-2">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                </svg>
-                Paper (PDF)
-            </a>
-            <a href="./sourcecode.zip" target="_blank" class="button-primary bg-gray-800 text-white px-6 py-3 rounded-lg font-semibold shadow-lg flex items-center gap-2">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                </svg>
-                Code
-            </a>
-            <a href="./dataset.zip" class="button-primary bg-green-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg flex items-center gap-2">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"></path>
-                </svg>
-                Dataset
-            </a>
-        </div>
-
-        <!-- Abstract -->
-        <section class="mb-12 bg-white rounded-lg shadow-md p-8">
-            <h3 class="text-2xl font-bold section-title">Abstract</h3>
-            <p class="text-gray-700 leading-relaxed">
-                The scarcity of high-quality, logically annotated video datasets remains a primary bottleneck in advancing Multi-Modal Large Language Models (MLLMs) for the medical domain. Traditional manual annotation is prohibitively expensive and non-scalable, while existing synthetic methods often suffer from stochastic hallucinations and a lack of logical interpretability. To address these challenges, we introduce <strong>Med-CRAFT</strong>, a novel neuro-symbolic data engineering framework that formalizes benchmark synthesis as a deterministic graph traversal process. Unlike black-box generative approaches, Med-CRAFT extracts structured visual primitives (e.g., surgical instruments, anatomical boundaries) from raw video streams and instantiates them into a dynamic Spatiotemporal Knowledge Graph. By anchoring query generation to valid paths within this graph, we enforce a rigorous Chain-of-Thought (CoT) provenance for every synthesized benchmark item. We instantiate this pipeline to produce <strong>M3-Med-Auto</strong>, a large-scale medical video reasoning benchmark exhibiting fine-grained temporal selectivity and multi-hop logical complexity.
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden bg-white">
+        <div class="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.5))] -z-10"></div>
+        <div class="container mx-auto px-4 text-center max-w-5xl">
+            <div class="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-sm font-medium text-blue-800 mb-6">
+                <span class="flex h-2 w-2 rounded-full bg-blue-600 mr-2"></span>
+                VLDB 2026
+            </div>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 mb-6 leading-[1.1]" data-i18n="hero.title">
+                Med-CRAFT
+            </h1>
+            <p class="text-xl md:text-2xl font-semibold text-slate-700 mb-6 max-w-4xl mx-auto" data-i18n="hero.subtitle">
+                Automated Construction of Interpretable and Multi-Hop Video Workloads via Knowledge Graph Traversal
             </p>
-        </section>
+            <p class="text-lg text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed" data-i18n="hero.description">
+                A novel pipeline that positions knowledge graphs as the central engine for automated generation of medical VideoQA datasets. Bridging the gap between scalability and interpretability.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#paper" class="inline-flex items-center justify-center rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-slate-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 transition-colors">
+                    <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> <span data-i18n="hero.buttons.paper">Read Paper</span>
+                </a>
+                <a href="https://github.com" target="_blank" class="inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50 transition-colors">
+                    <i data-lucide="github" class="w-4 h-4 mr-2"></i> <span data-i18n="hero.buttons.code">View Code</span>
+                </a>
+                <a href="#dataset" class="inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors">
+                    <i data-lucide="database" class="w-4 h-4 mr-2"></i> <span data-i18n="hero.buttons.dataset">Get Dataset</span>
+                </a>
+            </div>
+        </div>
+    </section>
 
-        <!-- System Architecture -->
-        <section class="mb-12 bg-white rounded-lg shadow-md p-8">
-            <h3 class="text-2xl font-bold section-title">System Architecture</h3>
-            <div class="mb-6">
-                <p class="text-gray-700 leading-relaxed mb-4">
-                    Med-CRAFT decomposes unstructured video processing into three tightly coupled abstraction layers:
+    <!-- Abstract -->
+    <section id="paper" class="py-16 bg-slate-50 border-y border-slate-200">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-8">
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <i data-lucide="book-open" class="w-6 h-6 text-blue-600"></i>
+                    <span data-i18n="abstract.title">Abstract</span>
+                </h2>
+                <p class="text-slate-700 leading-relaxed text-lg" data-i18n="abstract.text">
+                    Medical Video Question Answering (VideoQA) faces a dichotomy: manual annotation ensures structural rigor but lacks scalability, while end-to-end automatic generation offers scalability but sacrifices reasoning control. We propose Med-CRAFT, a pipeline that generates M3-Med-Auto, a large-scale dataset grounded in explicit visual evidence. This approach preserves the structural interpretability of manual methods while achieving the scalability of automatic ones.
                 </p>
-                <div class="space-y-4">
-                    <div class="border-l-4 border-blue-500 pl-4">
-                        <h4 class="font-bold text-lg text-gray-800">Visual Extraction Layer (Pixel-Level)</h4>
-                        <p class="text-gray-600">Ingests raw video data to extract distinct visual primitives and associates discrete detections into continuous 3D object trajectories (Spatiotemporal Tubelets).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features & Method -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12" data-i18n="features.title">Key Contributions</h2>
+            
+            <!-- Contributions Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20 max-w-7xl mx-auto">
+                <!-- Feature 1 -->
+                <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition-shadow border-t-4 border-t-blue-500">
+                    <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center mb-4 text-blue-600">
+                        <i data-lucide="settings-2"></i>
                     </div>
-                    <div class="border-l-4 border-green-500 pl-4">
-                        <h4 class="font-bold text-lg text-gray-800">Graph Construction Layer (Semantic-Level)</h4>
-                        <p class="text-gray-600">Instantiates tubelets as entities within a dynamic Knowledge Graph, quantifying pairwise spatiotemporal and semantic affinities to establish logic-weighted edges.</p>
+                    <h3 class="text-lg font-bold mb-2" data-i18n="features.f1.title">Automated Pipeline</h3>
+                    <p class="text-slate-600 text-sm" data-i18n="features.f1.desc">Full automation from entity extraction to question generation.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition-shadow border-t-4 border-t-green-500">
+                    <div class="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center mb-4 text-green-600">
+                        <i data-lucide="network"></i>
                     </div>
-                    <div class="border-l-4 border-purple-500 pl-4">
-                        <h4 class="font-bold text-lg text-gray-800">Query Synthesis Layer (Logic-Level)</h4>
-                        <p class="text-gray-600">Executes deterministic traversal algorithms over the graph to extract valid reasoning paths, expanding them into natural language questions with verifiable ground-truth.</p>
+                    <h3 class="text-lg font-bold mb-2" data-i18n="features.f2.title">Knowledge Graph Centric</h3>
+                    <p class="text-slate-600 text-sm" data-i18n="features.f2.desc">Uses KGs as the unifying abstraction for controllable reasoning.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition-shadow border-t-4 border-t-purple-500">
+                    <div class="w-10 h-10 bg-purple-50 rounded-lg flex items-center justify-center mb-4 text-purple-600">
+                        <i data-lucide="git-merge"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2" data-i18n="features.f3.title">Multi-Hop Reasoning</h3>
+                    <p class="text-slate-600 text-sm" data-i18n="features.f3.desc">Generates complex queries with explicit reasoning traces.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition-shadow border-t-4 border-t-orange-500">
+                    <div class="w-10 h-10 bg-orange-50 rounded-lg flex items-center justify-center mb-4 text-orange-600">
+                        <i data-lucide="layers"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2" data-i18n="features.f4.title">M3-Med-Auto Dataset</h3>
+                    <p class="text-slate-600 text-sm" data-i18n="features.f4.desc">A large-scale benchmark grounded in visual evidence.</p>
+                </div>
+            </div>
+
+            <!-- Steps -->
+            <div class="max-w-5xl mx-auto">
+                <h3 class="text-2xl font-bold mb-10 text-center" data-i18n="method.title">Methodology</h3>
+                <div class="grid md:grid-cols-3 gap-8 relative">
+                    <!-- Connector Line -->
+                    <div class="absolute top-1/2 left-0 w-full h-1 bg-slate-100 -z-10 hidden md:block transform -translate-y-1/2"></div>
+                    
+                    <!-- Step 1 -->
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 text-center shadow-sm relative group hover:-translate-y-1 transition-transform duration-300">
+                        <div class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold border-4 border-white shadow-lg z-10 relative">1</div>
+                        <h4 class="font-bold text-lg mb-2" data-i18n="method.step1">Entity Extraction</h4>
+                        <p class="text-sm text-slate-600" data-i18n="method.step1desc">Extracts entities from multi-modal signals (ASR, OCR) and grounds them visually.</p>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 text-center shadow-sm relative group hover:-translate-y-1 transition-transform duration-300">
+                        <div class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold border-4 border-white shadow-lg z-10 relative">2</div>
+                        <h4 class="font-bold text-lg mb-2" data-i18n="method.step2">KG Construction</h4>
+                        <p class="text-sm text-slate-600" data-i18n="method.step2desc">Builds a Cross-modal Knowledge Graph capturing spatial, temporal, and logical relations.</p>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 text-center shadow-sm relative group hover:-translate-y-1 transition-transform duration-300">
+                        <div class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold border-4 border-white shadow-lg z-10 relative">3</div>
+                        <h4 class="font-bold text-lg mb-2" data-i18n="method.step3">Question Generation</h4>
+                        <p class="text-sm text-slate-600" data-i18n="method.step3desc">Traverses the graph to generate multi-hop questions with precise temporal answers.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Key Features -->
-        <section class="mb-12 bg-white rounded-lg shadow-md p-8">
-            <h3 class="text-2xl font-bold section-title">Key Features</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-blue-50 p-6 rounded-lg">
-                    <div class="flex items-center mb-3">
-                        <div class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">1</div>
-                        <h4 class="font-bold text-lg">Deterministic Logic</h4>
-                    </div>
-                    <p class="text-gray-700">Every generated query has a verifiable Chain-of-Thought provenance through structured graph paths.</p>
+    <!-- Dataset Section -->
+    <section id="dataset" class="py-20 bg-slate-50 border-t border-slate-200">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-3xl font-bold mb-8 text-center" data-i18n="dataset.title">M3-Med-Auto Dataset</h2>
+            
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="p-8">
+                   <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+                     <i data-lucide="bar-chart-3" class="w-5 h-5 text-blue-600"></i>
+                     <span data-i18n="dataset.stats">Dataset Statistics</span>
+                   </h3>
+                   <div class="grid md:grid-cols-3 gap-4 mb-8">
+                        <div class="bg-slate-50 p-4 rounded-lg text-center font-medium text-slate-700 border border-slate-100" data-i18n="dataset.stat1">Large-scale VideoQA pairs</div>
+                        <div class="bg-slate-50 p-4 rounded-lg text-center font-medium text-slate-700 border border-slate-100" data-i18n="dataset.stat2">Multi-hop reasoning paths</div>
+                        <div class="bg-slate-50 p-4 rounded-lg text-center font-medium text-slate-700 border border-slate-100" data-i18n="dataset.stat3">Precise temporal grounding</div>
+                   </div>
+
+                   <div class="flex flex-col sm:flex-row gap-4 items-center justify-center mb-4">
+                     <button class="w-full sm:w-auto inline-flex items-center justify-center rounded-lg bg-blue-600 px-8 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 transition-colors">
+                       <i data-lucide="download" class="w-4 h-4 mr-2"></i> <span data-i18n="dataset.download">Download Dataset</span>
+                     </button>
+                     <span class="text-sm text-slate-500" data-i18n="dataset.license">Licensed under CC BY-NC-ND 4.0</span>
+                   </div>
                 </div>
-                <div class="bg-green-50 p-6 rounded-lg">
-                    <div class="flex items-center mb-3">
-                        <div class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">2</div>
-                        <h4 class="font-bold text-lg">Fine-Grained Temporal Selectivity</h4>
+                
+                <!-- Warning Block -->
+                <div class="bg-amber-50 border-t border-amber-100 p-6 flex gap-4">
+                    <i data-lucide="alert-triangle" class="h-6 w-6 text-amber-600 shrink-0 mt-0.5"></i>
+                    <div>
+                        <h4 class="text-amber-800 font-bold mb-1 text-base" data-i18n="dataset.warning.title">Video Download Policy</h4>
+                        <p class="text-amber-700 leading-relaxed text-sm" data-i18n="dataset.warning.text">
+                            Due to YouTube's Terms of Service and user privacy agreements, we strictly do not provide direct download links for the raw video files. The dataset contains YouTube Video IDs and timestamps. Researchers must download the videos independently using the provided tools/scripts.
+                        </p>
                     </div>
-                    <p class="text-gray-700">Low temporal selectivity ratio requiring highly precise temporal regression capabilities.</p>
-                </div>
-                <div class="bg-purple-50 p-6 rounded-lg">
-                    <div class="flex items-center mb-3">
-                        <div class="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">3</div>
-                        <h4 class="font-bold text-lg">Multi-Hop Reasoning</h4>
-                    </div>
-                    <p class="text-gray-700">Supports complex, multi-hop logical reasoning challenges spanning causal inference and temporal sequencing.</p>
-                </div>
-                <div class="bg-red-50 p-6 rounded-lg">
-                    <div class="flex items-center mb-3">
-                        <div class="bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">4</div>
-                        <h4 class="font-bold text-lg">Scalable & Cost-Effective</h4>
-                    </div>
-                    <p class="text-gray-700">Automated pipeline achieves expert-level quality at a fraction of the cost of manual annotation.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- M3-Med-Auto Dataset -->
-        <section class="mb-12 bg-white rounded-lg shadow-md p-8">
-            <h3 class="text-2xl font-bold section-title">M3-Med-Auto Dataset</h3>
-            <div class="overflow-x-auto">
-                <table class="min-w-full border-collapse border border-gray-300">
-                    <thead class="bg-gray-100">
-                        <tr>
-                            <th class="border border-gray-300 px-4 py-3 text-left font-semibold">Dataset</th>
-                            <th class="border border-gray-300 px-4 py-3 text-left font-semibold">Language(s)</th>
-                            <th class="border border-gray-300 px-4 py-3 text-left font-semibold">Method</th>
-                            <th class="border border-gray-300 px-4 py-3 text-left font-semibold">Videos</th>
-                            <th class="border border-gray-300 px-4 py-3 text-left font-semibold">Questions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="border border-gray-300 px-4 py-2">MedVidQA</td>
-                            <td class="border border-gray-300 px-4 py-2">English</td>
-                            <td class="border border-gray-300 px-4 py-2">Manual</td>
-                            <td class="border border-gray-300 px-4 py-2">899</td>
-                            <td class="border border-gray-300 px-4 py-2">3,010</td>
-                        </tr>
-                        <tr class="bg-gray-50">
-                            <td class="border border-gray-300 px-4 py-2">HealthVidQA-CRF</td>
-                            <td class="border border-gray-300 px-4 py-2">English</td>
-                            <td class="border border-gray-300 px-4 py-2">Automatic</td>
-                            <td class="border border-gray-300 px-4 py-2">11,708</td>
-                            <td class="border border-gray-300 px-4 py-2">23,434</td>
-                        </tr>
-                        <tr>
-                            <td class="border border-gray-300 px-4 py-2">M3-Med</td>
-                            <td class="border border-gray-300 px-4 py-2">Chinese & English</td>
-                            <td class="border border-gray-300 px-4 py-2">Manual</td>
-                            <td class="border border-gray-300 px-4 py-2">3,748</td>
-                            <td class="border border-gray-300 px-4 py-2">12,747</td>
-                        </tr>
-                        <tr class="bg-blue-50 font-semibold">
-                            <td class="border border-gray-300 px-4 py-2">M3-Med-Auto (Ours)</td>
-                            <td class="border border-gray-300 px-4 py-2">Chinese & English</td>
-                            <td class="border border-gray-300 px-4 py-2">Automatic</td>
-                            <td class="border border-gray-300 px-4 py-2">3,748</td>
-                            <td class="border border-gray-300 px-4 py-2">36,561</td>
-                        </tr>
-                    </tbody>
-                </table>
+    <!-- Team & Citation -->
+    <section id="team" class="py-20 bg-white">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <!-- Team -->
+            <div class="mb-16 text-center">
+                <h2 class="text-3xl font-bold mb-8" data-i18n="team.title">Authors</h2>
+                <div class="flex flex-wrap justify-center gap-x-8 gap-y-3 text-lg font-medium text-slate-800 mb-4">
+                    <span>Shenxi Liu</span>
+                    <span>Kan Li</span>
+                    <span>Mingyang Zhao</span>
+                    <span>Yuhang Tian</span>
+                    <span>Shoujun Zhou</span>
+                    <span>Bin Li</span>
+                </div>
+                <p class="text-slate-600 italic" data-i18n="team.affiliations">
+                    Beijing Institute of Technology · The Hong Kong Polytechnic University · Shenzhen Institute of Advanced Technology, CAS
+                </p>
             </div>
-        </section>
 
-        <!-- Citation -->
-        <section class="mb-12 bg-white rounded-lg shadow-md p-8">
-            <h3 class="text-2xl font-bold section-title">Citation</h3>
-            <div class="bg-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
-                <pre>@article{liu2026medcraft,
+            <!-- Citation -->
+            <div class="bg-slate-900 rounded-xl p-8 text-slate-300 shadow-xl">
+                <h3 class="text-white font-bold mb-4 flex items-center gap-2">
+                    <i data-lucide="quote" class="w-5 h-5"></i>
+                    <span data-i18n="citation.title">Citation</span>
+                </h3>
+                <div class="relative">
+                    <pre class="font-mono text-xs md:text-sm overflow-x-auto whitespace-pre-wrap bg-slate-950 p-6 rounded-lg border border-slate-800 text-slate-300 selection:bg-blue-500 selection:text-white">@article{medcraft2026,
   title={Med-CRAFT: Automated Construction of Interpretable and Multi-Hop Video Workloads via Knowledge Graph Traversal},
   author={Liu, Shenxi and Li, Kan and Zhao, Mingyang and Tian, Yuhang and Zhou, Shoujun and Li, Bin},
-  journal={Proceedings of the VLDB Endowment},
+  journal={PVLDB},
   volume={14},
   number={1},
-  pages={XXX--XXX},
-  year={2026},
-  publisher={VLDB Endowment}
+  year={2026}
 }</pre>
+                </div>
             </div>
-        </section>
-
-        <!-- Contact -->
-        <section class="bg-white rounded-lg shadow-md p-8">
-            <h3 class="text-2xl font-bold section-title">Contact</h3>
-            <p class="text-gray-700 leading-relaxed">
-                For questions or collaboration inquiries, please contact: 
-                <a href="mailto:liushenxi@bit.edu.cn" class="text-blue-600 hover:underline">liushenxi@bit.edu.cn</a>
-            </p>
-        </section>
-    </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8 mt-12">
-        <div class="max-w-5xl mx-auto px-6 text-center">
-            <p>&copy; 2026 Med-CRAFT Project. All rights reserved.</p>
-            <p class="text-sm mt-2 text-gray-400">Licensed under Creative Commons BY-NC-ND 4.0</p>
+    <footer class="bg-slate-50 border-t border-slate-200 py-12">
+        <div class="container mx-auto px-4 text-center text-slate-500 text-sm">
+            <p class="mb-2">© 2026 Med-CRAFT Project.</p>
+            <div class="flex justify-center gap-6 mt-4 font-medium">
+                <a href="#" class="hover:text-slate-900 transition-colors">GitHub</a>
+                <a href="#" class="hover:text-slate-900 transition-colors">Paper</a>
+                <a href="#" class="hover:text-slate-900 transition-colors">License</a>
+            </div>
         </div>
     </footer>
+
+    <!-- Translation Logic -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        const content = {
+            en: {
+                nav: {
+                    home: "Home",
+                    paper: "Paper",
+                    dataset: "Dataset",
+                    team: "Team",
+                },
+                hero: {
+                    title: "Med-CRAFT",
+                    subtitle: "Automated Construction of Interpretable and Multi-Hop Video Workloads via Knowledge Graph Traversal",
+                    description: "A novel pipeline that positions knowledge graphs as the central engine for automated generation of medical VideoQA datasets. Bridging the gap between scalability and interpretability.",
+                    buttons: { paper: "Read Paper", code: "View Code", dataset: "Get Dataset" }
+                },
+                abstract: {
+                    title: "Abstract",
+                    text: "Medical Video Question Answering (VideoQA) faces a dichotomy: manual annotation ensures structural rigor but lacks scalability, while end-to-end automatic generation offers scalability but sacrifices reasoning control. We propose Med-CRAFT, a pipeline that generates M3-Med-Auto, a large-scale dataset grounded in explicit visual evidence. This approach preserves the structural interpretability of manual methods while achieving the scalability of automatic ones."
+                },
+                features: {
+                    title: "Key Contributions",
+                    f1: { title: "Automated Pipeline", desc: "Full automation from entity extraction to question generation." },
+                    f2: { title: "Knowledge Graph Centric", desc: "Uses KGs as the unifying abstraction for controllable reasoning." },
+                    f3: { title: "Multi-Hop Reasoning", desc: "Generates complex queries with explicit reasoning traces." },
+                    f4: { title: "M3-Med-Auto Dataset", desc: "A large-scale benchmark grounded in visual evidence." }
+                },
+                method: {
+                    title: "Methodology",
+                    step1: "Entity Extraction", step1desc: "Extracts entities from multi-modal signals (ASR, OCR) and grounds them visually.",
+                    step2: "KG Construction", step2desc: "Builds a Cross-modal Knowledge Graph capturing spatial, temporal, and logical relations.",
+                    step3: "Question Generation", step3desc: "Traverses the graph to generate multi-hop questions with precise temporal answers."
+                },
+                dataset: {
+                    title: "M3-Med-Auto Dataset",
+                    stats: "Dataset Statistics",
+                    stat1: "Large-scale VideoQA pairs",
+                    stat2: "Multi-hop reasoning paths",
+                    stat3: "Precise temporal grounding",
+                    download: "Download Dataset",
+                    license: "Licensed under CC BY-NC-ND 4.0",
+                    warning: {
+                        title: "Video Download Policy",
+                        text: "Due to YouTube's Terms of Service and user privacy agreements, we strictly do not provide direct download links for the raw video files. The dataset contains YouTube Video IDs and timestamps. Researchers must download the videos independently using the provided tools/scripts."
+                    }
+                },
+                team: {
+                    title: "Authors",
+                    affiliations: "Beijing Institute of Technology · The Hong Kong Polytechnic University · Shenzhen Institute of Advanced Technology, CAS"
+                },
+                citation: { title: "Citation" }
+            },
+            zh: {
+                nav: {
+                    home: "首页",
+                    paper: "论文",
+                    dataset: "数据集",
+                    team: "团队",
+                },
+                hero: {
+                    title: "Med-CRAFT",
+                    subtitle: "基于知识图谱遍历的可解释多跳视频工作负载自动构建",
+                    description: "一种将知识图谱作为核心引擎的创新流程，用于自动生成医疗视频问答数据集。旨在弥合可扩展性与可解释性之间的鸿沟。",
+                    buttons: { paper: "阅读论文", code: "查看代码", dataset: "获取数据" }
+                },
+                abstract: {
+                    title: "摘要",
+                    text: "医疗视频问答（VideoQA）面临两难困境：人工标注虽然保证了结构严谨性但缺乏可扩展性，而端到端自动生成虽然具备可扩展性但牺牲了推理控制。我们提出了 Med-CRAFT，通过该流程生成了大规模数据集 M3-Med-Auto，该数据集建立在明确的视觉证据之上。这种方法既保留了人工方法的结构可解释性，又实现了自动化方法的可扩展性。"
+                },
+                features: {
+                    title: "核心贡献",
+                    f1: { title: "自动化流程", desc: "从实体提取到问题生成的全自动流水线。" },
+                    f2: { title: "以知识图谱为中心", desc: "使用知识图谱作为可控推理的统一抽象层。" },
+                    f3: { title: "多跳推理", desc: "生成具有明确推理路径的复杂查询。" },
+                    f4: { title: "M3-Med-Auto 数据集", desc: "基于视觉证据的大规模基准测试集。" }
+                },
+                method: {
+                    title: "方法论",
+                    step1: "实体提取", step1desc: "从多模态信号（ASR, OCR）中提取实体并进行视觉定位。",
+                    step2: "图谱构建", step2desc: "构建捕捉空间、时间和逻辑关系的跨模态知识图谱。",
+                    step3: "问题生成", step3desc: "通过遍历图谱生成包含精确时间答案的多跳问题。"
+                },
+                dataset: {
+                    title: "M3-Med-Auto 数据集",
+                    stats: "数据集统计",
+                    stat1: "大规模 VideoQA 对",
+                    stat2: "多跳推理路径",
+                    stat3: "精确的时间定位",
+                    download: "下载数据集",
+                    license: "遵循 CC BY-NC-ND 4.0 协议",
+                    warning: {
+                        title: "视频下载政策",
+                        text: "由于 YouTube 服务条款及用户隐私协议的限制，我们严格遵守规定，不提供原始视频文件的直接下载链接。数据集中仅包含 YouTube 视频 ID 和时间戳。研究人员需使用我们提供的工具/脚本自行下载视频。"
+                    }
+                },
+                team: {
+                    title: "作者团队",
+                    affiliations: "北京理工大学 · 香港理工大学 · 中国科学院深圳先进技术研究院"
+                },
+                citation: { title: "引用" }
+            }
+        };
+
+        // Helper to access nested objects using string dot notation (e.g., 'nav.home')
+        function resolve(obj, path) {
+            return path.split('.').reduce((prev, curr) => {
+                return prev ? prev[curr] : null
+            }, obj);
+        }
+
+        function setLang(lang) {
+            // Update Text
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                const text = resolve(content[lang], key);
+                if (text) el.innerText = text;
+            });
+
+            // Update Buttons State
+            const btnEn = document.getElementById('btn-en');
+            const btnZh = document.getElementById('btn-zh');
+
+            if (lang === 'en') {
+                btnEn.className = "px-3 py-1 text-xs font-bold rounded-full transition-all bg-white shadow-sm text-blue-700";
+                btnZh.className = "px-3 py-1 text-xs font-medium rounded-full transition-all text-slate-500 hover:text-slate-900";
+            } else {
+                btnZh.className = "px-3 py-1 text-xs font-bold rounded-full transition-all bg-white shadow-sm text-blue-700";
+                btnEn.className = "px-3 py-1 text-xs font-medium rounded-full transition-all text-slate-500 hover:text-slate-900";
+            }
+
+            document.documentElement.lang = lang;
+        }
+
+        // Initialize defaults
+        // setLang('en'); // Default is already set in HTML, but this ensures JS sync if needed.
+    </script>
 </body>
 </html>
