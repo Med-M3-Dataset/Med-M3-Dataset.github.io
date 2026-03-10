@@ -1,0 +1,406 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NLPCC 2026 DA-MIVQA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(59,130,246,0.12), transparent 28%),
+        radial-gradient(circle at top right, rgba(14,165,233,0.12), transparent 25%),
+        linear-gradient(180deg, #f8fbff 0%, #eef6ff 100%);
+    }
+    .glass {
+      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.82);
+    }
+    .logo-shadow {
+      filter: drop-shadow(0 10px 20px rgba(37, 99, 235, 0.18));
+    }
+  </style>
+</head>
+<body class="text-slate-800">
+  <div class="min-h-screen">
+    <header class="sticky top-0 z-50 border-b border-slate-200/70 bg-white/80 backdrop-blur">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <a href="#top" class="flex items-center gap-3">
+          <div class="logo-shadow">
+            <svg viewBox="0 0 120 120" class="h-12 w-12">
+              <defs>
+                <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#2563eb"/>
+                  <stop offset="100%" stop-color="#06b6d4"/>
+                </linearGradient>
+              </defs>
+              <circle cx="60" cy="60" r="54" fill="url(#g1)"/>
+              <circle cx="60" cy="60" r="41" fill="white" opacity="0.15"/>
+              <path d="M48 35h10v15h15v10H58v15H48V60H33V50h15z" fill="white"/>
+              <path d="M62 70l24-14-24-14z" fill="#ffffff" opacity="0.95"/>
+              <circle cx="28" cy="88" r="4" fill="white" opacity="0.9"/>
+              <circle cx="44" cy="88" r="4" fill="white" opacity="0.75"/>
+              <circle cx="60" cy="88" r="4" fill="white" opacity="0.6"/>
+              <rect x="24" y="84" width="42" height="8" rx="4" fill="white" opacity="0.18"/>
+            </svg>
+          </div>
+          <div>
+            <div class="text-sm font-semibold tracking-wide text-sky-700">NLPCC 2026</div>
+            <div class="text-lg font-bold text-slate-900">DA-MIVQA</div>
+          </div>
+        </a>
+
+        <nav class="hidden gap-6 text-sm text-slate-600 md:flex">
+          <a href="#background" class="hover:text-sky-700" data-i18n="navBackground">Background</a>
+          <a href="#tracks" class="hover:text-sky-700" data-i18n="navTracks">Tracks</a>
+          <a href="#dataset" class="hover:text-sky-700" data-i18n="navDataset">Dataset</a>
+          <a href="#download" class="hover:text-sky-700" data-i18n="navDownload">Download</a>
+        </nav>
+
+        <div class="flex items-center gap-2">
+          <button id="btn-zh" class="rounded-full bg-sky-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-sky-700">中文</button>
+          <button id="btn-en" class="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-sky-400 hover:text-sky-700">EN</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="mx-auto max-w-7xl px-6 py-16 md:py-24">
+        <div class="grid items-center gap-10 lg:grid-cols-2">
+          <div>
+            <div class="mb-4 inline-flex items-center rounded-full border border-sky-200 bg-sky-50 px-4 py-1 text-sm font-medium text-sky-700">
+              <span data-i18n="badge">Official Task Overview Website Prototype</span>
+            </div>
+            <h1 class="max-w-4xl text-4xl font-black leading-tight text-slate-900 md:text-5xl">
+              <span data-i18n="heroTitle">NLPCC-2026 Difficulty-Aware Medical Instructional Video Question Answering</span>
+            </h1>
+            <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600" data-i18n="heroDesc">
+              A bilingual shared-task webpage for difficulty-aware medical instructional video question answering, focusing on simple-versus-complex reasoning evaluation in medical video grounding and retrieval.
+            </p>
+            <div class="mt-8 flex flex-wrap gap-4">
+              <a href="#download" class="rounded-xl bg-sky-600 px-6 py-3 font-semibold text-white shadow-lg shadow-sky-200 transition hover:bg-sky-700" data-i18n="heroBtnPrimary">Download Test Dataset</a>
+              <a href="#tracks" class="rounded-xl border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-700 transition hover:border-sky-400 hover:text-sky-700" data-i18n="heroBtnSecondary">View Tracks</a>
+            </div>
+            <div class="mt-8 grid max-w-2xl grid-cols-1 gap-4 sm:grid-cols-3">
+              <div class="glass rounded-2xl border border-white/70 p-4 shadow-sm">
+                <div class="text-2xl font-bold text-slate-900">3</div>
+                <div class="text-sm text-slate-600" data-i18n="statTracks">Tracks</div>
+              </div>
+              <div class="glass rounded-2xl border border-white/70 p-4 shadow-sm">
+                <div class="text-2xl font-bold text-slate-900">2023–2025</div>
+                <div class="text-sm text-slate-600" data-i18n="statSource">Re-annotated NLPCC video resources</div>
+              </div>
+              <div class="glass rounded-2xl border border-white/70 p-4 shadow-sm">
+                <div class="text-2xl font-bold text-slate-900">Simple / Complex</div>
+                <div class="text-sm text-slate-600" data-i18n="statDifficulty">Difficulty-aware evaluation</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass rounded-3xl border border-white/70 p-8 shadow-xl">
+            <div class="mb-6 flex items-center gap-4">
+              <div class="logo-shadow">
+                <svg viewBox="0 0 120 120" class="h-16 w-16">
+                  <defs>
+                    <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#2563eb"/>
+                      <stop offset="100%" stop-color="#0ea5e9"/>
+                    </linearGradient>
+                  </defs>
+                  <rect x="10" y="10" width="100" height="100" rx="28" fill="url(#g2)"/>
+                  <path d="M46 31h10v16h16v10H56v16H46V57H30V47h16z" fill="white"/>
+                  <path d="M63 72l21-12-21-12z" fill="#fff"/>
+                  <path d="M28 86h40" stroke="white" stroke-width="7" stroke-linecap="round" opacity="0.25"/>
+                  <circle cx="30" cy="86" r="4" fill="white"/>
+                  <circle cx="45" cy="86" r="4" fill="white" opacity="0.8"/>
+                  <circle cx="60" cy="86" r="4" fill="white" opacity="0.6"/>
+                </svg>
+              </div>
+              <div>
+                <div class="text-2xl font-black text-slate-900">DA-MIVQA</div>
+                <div class="text-sm text-slate-500" data-i18n="logoMeaning">Medical + Video + Temporal Grounding + Difficulty-Aware Reasoning</div>
+              </div>
+            </div>
+            <div class="rounded-2xl bg-slate-50 p-5">
+              <h3 class="text-lg font-bold text-slate-900" data-i18n="logoTitle">Logo Design Concept</h3>
+              <ul class="mt-3 space-y-3 text-sm leading-7 text-slate-600">
+                <li data-i18n="logoItem1">The medical cross represents healthcare and clinical instruction.</li>
+                <li data-i18n="logoItem2">The play triangle represents instructional video understanding.</li>
+                <li data-i18n="logoItem3">The timeline dots symbolize temporal answer grounding.</li>
+                <li data-i18n="logoItem4">The blue gradient conveys reliability, intelligence, and academic technology.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="background" class="mx-auto max-w-7xl px-6 py-8">
+        <div class="glass rounded-3xl border border-white/70 p-8 shadow-sm">
+          <div class="mb-4 inline-flex rounded-full bg-sky-100 px-3 py-1 text-sm font-semibold text-sky-700" data-i18n="sectionBackground">Background</div>
+          <p class="text-base leading-8 text-slate-700" data-i18n="backgroundText">
+            DA-MIVQA extends the NLPCC 2023–2025 medical instructional video question answering tasks by introducing difficulty-aware evaluation. Instead of only measuring overall performance, the new benchmark explicitly distinguishes between simple questions, which can be answered mainly through direct subtitle-aligned evidence, and complex questions, which require integrating subtitles, visual demonstrations, and procedural context. This design aims to better evaluate robustness in realistic medical education and emergency knowledge access scenarios.
+          </p>
+        </div>
+      </section>
+
+      <section id="tracks" class="mx-auto max-w-7xl px-6 py-12">
+        <div class="mb-8">
+          <div class="inline-flex rounded-full bg-cyan-100 px-3 py-1 text-sm font-semibold text-cyan-700" data-i18n="sectionTracks">Task Overview</div>
+          <h2 class="mt-4 text-3xl font-black text-slate-900" data-i18n="tracksTitle">Three Shared Task Tracks</h2>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-3">
+          <div class="glass rounded-3xl border border-white/70 p-6 shadow-sm">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-600 text-lg font-bold text-white">1</div>
+            <h3 class="text-xl font-bold text-slate-900" data-i18n="track1Title">Track 1: DA-TAGSV</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600" data-i18n="track1Desc">
+              Given a medical question and a single untrimmed medical instructional video, the system must locate the temporal answer span within the video.
+            </p>
+            <div class="mt-4 rounded-2xl bg-slate-50 p-4">
+              <div class="mb-2 text-sm font-semibold text-slate-800" data-i18n="metricsLabel">Evaluation Metrics</div>
+              <p class="text-sm leading-7 text-slate-600" data-i18n="track1Metrics">mIoU, R@1 with IoU = 0.3 / 0.5 / 0.7, reported on simple, complex, and overall subsets.</p>
+            </div>
+          </div>
+
+          <div class="glass rounded-3xl border border-white/70 p-6 shadow-sm">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-600 text-lg font-bold text-white">2</div>
+            <h3 class="text-xl font-bold text-slate-900" data-i18n="track2Title">Track 2: DA-VCR</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600" data-i18n="track2Desc">
+              Given a medical question and a large video corpus, the system must retrieve the most relevant instructional video.
+            </p>
+            <div class="mt-4 rounded-2xl bg-slate-50 p-4">
+              <div class="mb-2 text-sm font-semibold text-slate-800" data-i18n="metricsLabel">Evaluation Metrics</div>
+              <p class="text-sm leading-7 text-slate-600" data-i18n="track2Metrics">R@1, R@10, R@50, and MRR, reported on simple, complex, and overall subsets.</p>
+            </div>
+          </div>
+
+          <div class="glass rounded-3xl border border-white/70 p-6 shadow-sm">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-600 text-lg font-bold text-white">3</div>
+            <h3 class="text-xl font-bold text-slate-900" data-i18n="track3Title">Track 3: DA-TAGVC</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600" data-i18n="track3Desc">
+              Given a medical question and a large video corpus, the system must retrieve the target video and then localize the answer span inside it.
+            </p>
+            <div class="mt-4 rounded-2xl bg-slate-50 p-4">
+              <div class="mb-2 text-sm font-semibold text-slate-800" data-i18n="metricsLabel">Evaluation Metrics</div>
+              <p class="text-sm leading-7 text-slate-600" data-i18n="track3Metrics">R@1|mIoU, R@10|mIoU, R@50|mIoU, and Average, reported on simple, complex, and overall subsets.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="dataset" class="mx-auto max-w-7xl px-6 py-4">
+        <div class="grid gap-6 lg:grid-cols-2">
+          <div class="glass rounded-3xl border border-white/70 p-8 shadow-sm">
+            <div class="mb-4 inline-flex rounded-full bg-indigo-100 px-3 py-1 text-sm font-semibold text-indigo-700" data-i18n="sectionDataset">Dataset</div>
+            <h2 class="text-2xl font-black text-slate-900" data-i18n="datasetTitle">Re-annotation of NLPCC 2023–2025 Video Resources</h2>
+            <p class="mt-4 text-sm leading-8 text-slate-600" data-i18n="datasetText1">
+              DA-MIVQA is built through systematic re-annotation of the video resources used in NLPCC 2023, 2024, and 2025. Instead of creating an entirely new corpus, the benchmark reuses high-quality medical instructional videos and enriches them with difficulty-aware labels.
+            </p>
+            <p class="mt-4 text-sm leading-8 text-slate-600" data-i18n="datasetText2">
+              The videos cover first aid, emergency response, rehabilitation, nursing practice, home care, and general medical education. Each sample includes a question, a unique temporal answer span, and structured metadata for retrieval and localization.
+            </p>
+          </div>
+
+          <div class="glass rounded-3xl border border-white/70 p-8 shadow-sm">
+            <div class="mb-4 inline-flex rounded-full bg-emerald-100 px-3 py-1 text-sm font-semibold text-emerald-700" data-i18n="difficultyTag">Simple / Complex Labels</div>
+            <h2 class="text-2xl font-black text-slate-900" data-i18n="difficultyTitle">Meaning of the New Difficulty Annotation</h2>
+            <p class="mt-4 text-sm leading-8 text-slate-600" data-i18n="difficultyText">
+              The simple/complex distinction reflects the main evidence source required to answer a question. Simple questions can often be answered mainly through subtitle-aligned textual cues or other explicit single-source evidence. Complex questions cannot be reliably solved from subtitles alone and instead require multimodal integration, such as visual actions, tool use, posture, and procedural transitions across time.
+            </p>
+            <div class="mt-5 grid gap-3 sm:grid-cols-2">
+              <div class="rounded-2xl bg-slate-50 p-4">
+                <div class="font-semibold text-slate-900" data-i18n="simpleLabel">Simple</div>
+                <div class="mt-1 text-sm leading-7 text-slate-600" data-i18n="simpleDesc">Text-dominant matching, direct evidence, single-source cues.</div>
+              </div>
+              <div class="rounded-2xl bg-slate-50 p-4">
+                <div class="font-semibold text-slate-900" data-i18n="complexLabel">Complex</div>
+                <div class="mt-1 text-sm leading-7 text-slate-600" data-i18n="complexDesc">Multimodal procedural understanding, temporal and visual evidence integration.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="download" class="mx-auto max-w-7xl px-6 py-12">
+        <div class="glass rounded-3xl border border-white/70 p-8 shadow-sm">
+          <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+            <div>
+              <div class="mb-4 inline-flex rounded-full bg-amber-100 px-3 py-1 text-sm font-semibold text-amber-700" data-i18n="sectionDownload">Download</div>
+              <h2 class="text-2xl font-black text-slate-900" data-i18n="downloadTitle">Test Dataset Download</h2>
+              <p class="mt-4 text-sm leading-8 text-slate-600" data-i18n="downloadDesc">
+                The download button is provided here for the future release of the DA-MIVQA test dataset. The actual download link has not been added yet.
+              </p>
+              <div class="mt-6 flex flex-wrap gap-4">
+                <button id="downloadBtn" class="rounded-xl bg-slate-900 px-6 py-3 font-semibold text-white shadow-lg shadow-slate-200 transition hover:bg-slate-800" data-i18n="downloadBtn">Download Test Dataset</button>
+                <span class="inline-flex items-center rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-700" data-i18n="downloadNotice">Link coming soon</span>
+              </div>
+            </div>
+            <div class="rounded-3xl bg-gradient-to-br from-sky-600 to-cyan-500 p-6 text-white shadow-lg">
+              <div class="text-sm font-semibold uppercase tracking-wider opacity-90">DA-MIVQA</div>
+              <div class="mt-3 text-2xl font-black" data-i18n="downloadCardTitle">Bilingual Task Website</div>
+              <p class="mt-3 text-sm leading-7 text-white/90" data-i18n="downloadCardText">
+                This prototype page supports Chinese-English switching and can be extended later with official links, leaderboards, baselines, and submission instructions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mx-auto max-w-7xl px-6 pb-16">
+        <div class="rounded-3xl border border-slate-200 bg-white px-6 py-5 text-sm text-slate-500 shadow-sm">
+          <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+            <div data-i18n="footerLeft">NLPCC 2026 · Difficulty-Aware Medical Instructional Video Question Answering</div>
+            <div data-i18n="footerRight">Prototype webpage for task overview display</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const translations = {
+      zh: {
+        navBackground: "背景",
+        navTracks: "任务赛道",
+        navDataset: "数据集",
+        navDownload: "下载",
+        badge: "任务概览双语网页原型",
+        heroTitle: "NLPCC-2026 难度感知医学教学视频问答",
+        heroDesc: "这是一个支持中英文切换的共享任务网页原型，围绕医学教学视频中的简单/复杂推理评测，展示时间定位、视频检索与语料级定位任务。",
+        heroBtnPrimary: "下载测试数据集",
+        heroBtnSecondary: "查看赛道",
+        statTracks: "任务赛道",
+        statSource: "重标注自 NLPCC 2023–2025 视频资源",
+        statDifficulty: "难度感知评测",
+        logoMeaning: "医学 × 视频 × 时间定位 × 难度感知推理",
+        logoTitle: "Logo 设计理念",
+        logoItem1: "医疗十字代表医疗健康与临床教学场景。",
+        logoItem2: "播放三角形代表教学视频理解任务。",
+        logoItem3: "时间轴圆点代表时间答案定位。",
+        logoItem4: "蓝色渐变体现可靠、智能与学术科技感。",
+        sectionBackground: "背景",
+        backgroundText: "DA-MIVQA 在 NLPCC 2023–2025 医学教学视频问答任务基础上进一步引入难度感知评测。它不再只关注总体性能，而是显式区分 simple 与 complex 两类问题：前者主要依赖字幕对齐文本等直接证据，后者则需要结合视觉演示、字幕与流程上下文进行多源推理。该设计更有利于评估模型在真实医学教育与急救知识获取场景下的稳健性。",
+        sectionTracks: "任务概览",
+        tracksTitle: "三个共享任务赛道",
+        track1Title: "赛道 1：DA-TAGSV",
+        track1Desc: "给定一个医学问题和一段未裁剪医学教学视频，系统需要定位视频中对应答案的时间片段。",
+        metricsLabel: "评测指标",
+        track1Metrics: "mIoU，以及 IoU=0.3 / 0.5 / 0.7 下的 R@1；同时分别报告 simple、complex 与 overall 结果。",
+        track2Title: "赛道 2：DA-VCR",
+        track2Desc: "给定一个医学问题和大规模视频库，系统需要检索出最相关的医学教学视频。",
+        track2Metrics: "R@1、R@10、R@50 与 MRR；同时分别报告 simple、complex 与 overall 结果。",
+        track3Title: "赛道 3：DA-TAGVC",
+        track3Desc: "给定一个医学问题和大规模视频库，系统需要先检索目标视频，再在其中定位答案时间片段。",
+        track3Metrics: "R@1|mIoU、R@10|mIoU、R@50|mIoU 与 Average；同时分别报告 simple、complex 与 overall 结果。",
+        sectionDataset: "数据集",
+        datasetTitle: "基于 NLPCC 2023–2025 视频资源的重标注",
+        datasetText1: "DA-MIVQA 通过对 NLPCC 2023、2024、2025 所使用的视频资源进行系统性重标注构建而成。它并非完全新建语料，而是在高质量医学教学视频基础上新增难度感知标签。",
+        datasetText2: "视频内容覆盖急救、应急处置、康复指导、护理实践、家庭护理与一般医学教育。每个样本包含问题、唯一时间答案片段，以及用于检索与定位的结构化元数据。",
+        difficultyTag: "简单 / 复杂 标签",
+        difficultyTitle: "新增难度标注的含义",
+        difficultyText: "simple / complex 的区分依据是回答问题所依赖的主要证据来源。Simple 问题通常主要依赖字幕对齐文本线索或其他显式单源证据；Complex 问题则无法仅靠字幕稳定解决，而需要综合视觉动作、器械使用、身体姿态与跨时间流程变化等多模态信息。",
+        simpleLabel: "Simple",
+        simpleDesc: "以文本主导匹配、直接证据、单一来源线索为主。",
+        complexLabel: "Complex",
+        complexDesc: "强调多模态流程理解，以及时间与视觉证据的整合。",
+        sectionDownload: "下载",
+        downloadTitle: "测试数据集下载",
+        downloadDesc: "此处预留 DA-MIVQA 测试数据集下载按钮，当前暂未添加实际下载链接。",
+        downloadBtn: "下载测试数据集",
+        downloadNotice: "链接即将开放",
+        downloadCardTitle: "双语任务网页",
+        downloadCardText: "该网页原型已支持中英文切换，后续可以继续扩展为官方页面，加入数据链接、榜单、基线系统与提交说明。",
+        footerLeft: "NLPCC 2026 · 难度感知医学教学视频问答",
+        footerRight: "用于展示任务概览的网页原型"
+      },
+      en: {
+        navBackground: "Background",
+        navTracks: "Tracks",
+        navDataset: "Dataset",
+        navDownload: "Download",
+        badge: "Official Task Overview Website Prototype",
+        heroTitle: "NLPCC-2026 Difficulty-Aware Medical Instructional Video Question Answering",
+        heroDesc: "This is a bilingual shared-task website prototype centered on simple-versus-complex reasoning evaluation for medical instructional videos, covering temporal grounding, video retrieval, and corpus-level grounding.",
+        heroBtnPrimary: "Download Test Dataset",
+        heroBtnSecondary: "View Tracks",
+        statTracks: "Tracks",
+        statSource: "Re-annotated NLPCC 2023–2025 video resources",
+        statDifficulty: "Difficulty-aware evaluation",
+        logoMeaning: "Medical + Video + Temporal Grounding + Difficulty-Aware Reasoning",
+        logoTitle: "Logo Design Concept",
+        logoItem1: "The medical cross represents healthcare and clinical instruction.",
+        logoItem2: "The play triangle represents instructional video understanding.",
+        logoItem3: "The timeline dots symbolize temporal answer grounding.",
+        logoItem4: "The blue gradient conveys reliability, intelligence, and academic technology.",
+        sectionBackground: "Background",
+        backgroundText: "DA-MIVQA extends the NLPCC 2023–2025 medical instructional video question answering tasks by introducing difficulty-aware evaluation. Instead of only measuring overall performance, the benchmark explicitly distinguishes simple questions, which mainly depend on direct subtitle-aligned evidence, from complex questions, which require integrating visual demonstrations, subtitles, and procedural context. This design better evaluates robustness in realistic medical education and emergency knowledge access scenarios.",
+        sectionTracks: "Task Overview",
+        tracksTitle: "Three Shared Task Tracks",
+        track1Title: "Track 1: DA-TAGSV",
+        track1Desc: "Given a medical question and a single untrimmed medical instructional video, the system must locate the temporal answer span within the video.",
+        metricsLabel: "Evaluation Metrics",
+        track1Metrics: "mIoU and R@1 at IoU = 0.3 / 0.5 / 0.7, reported on simple, complex, and overall subsets.",
+        track2Title: "Track 2: DA-VCR",
+        track2Desc: "Given a medical question and a large video corpus, the system must retrieve the most relevant instructional video.",
+        track2Metrics: "R@1, R@10, R@50, and MRR, reported on simple, complex, and overall subsets.",
+        track3Title: "Track 3: DA-TAGVC",
+        track3Desc: "Given a medical question and a large video corpus, the system must retrieve the target video and then localize the answer span inside it.",
+        track3Metrics: "R@1|mIoU, R@10|mIoU, R@50|mIoU, and Average, reported on simple, complex, and overall subsets.",
+        sectionDataset: "Dataset",
+        datasetTitle: "Re-annotation of NLPCC 2023–2025 Video Resources",
+        datasetText1: "DA-MIVQA is built through systematic re-annotation of the video resources used in NLPCC 2023, 2024, and 2025. Rather than creating a completely new corpus, it reuses high-quality medical instructional videos and enriches them with difficulty-aware labels.",
+        datasetText2: "The videos cover first aid, emergency response, rehabilitation, nursing practice, home care, and general medical education. Each sample includes a question, a unique temporal answer span, and structured metadata for retrieval and localization.",
+        difficultyTag: "Simple / Complex Labels",
+        difficultyTitle: "Meaning of the New Difficulty Annotation",
+        difficultyText: "The simple/complex distinction is defined by the main evidence source required to answer a question. Simple questions can often be answered mainly through subtitle-aligned textual cues or other explicit single-source evidence. Complex questions cannot be reliably solved from subtitles alone and instead require multimodal integration, such as visual actions, tool use, posture, and procedural transitions across time.",
+        simpleLabel: "Simple",
+        simpleDesc: "Text-dominant matching, direct evidence, and single-source cues.",
+        complexLabel: "Complex",
+        complexDesc: "Multimodal procedural understanding and integration of temporal and visual evidence.",
+        sectionDownload: "Download",
+        downloadTitle: "Test Dataset Download",
+        downloadDesc: "A download button is reserved here for the future release of the DA-MIVQA test dataset. The actual download link has not been added yet.",
+        downloadBtn: "Download Test Dataset",
+        downloadNotice: "Link coming soon",
+        downloadCardTitle: "Bilingual Task Website",
+        downloadCardText: "This prototype already supports Chinese-English switching and can later be extended with official links, leaderboards, baselines, and submission instructions.",
+        footerLeft: "NLPCC 2026 · Difficulty-Aware Medical Instructional Video Question Answering",
+        footerRight: "Prototype webpage for task overview display"
+      }
+    };
+
+    let currentLang = "zh";
+
+    function renderLang(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[lang][key]) el.textContent = translations[lang][key];
+      });
+
+      const zhBtn = document.getElementById("btn-zh");
+      const enBtn = document.getElementById("btn-en");
+
+      if (lang === "zh") {
+        zhBtn.className = "rounded-full bg-sky-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-sky-700";
+        enBtn.className = "rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-sky-400 hover:text-sky-700";
+      } else {
+        enBtn.className = "rounded-full bg-sky-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-sky-700";
+        zhBtn.className = "rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-sky-400 hover:text-sky-700";
+      }
+    }
+
+    document.getElementById("btn-zh").addEventListener("click", () => renderLang("zh"));
+    document.getElementById("btn-en").addEventListener("click", () => renderLang("en"));
+
+    document.getElementById("downloadBtn").addEventListener("click", () => {
+      alert(currentLang === "zh" ? "测试数据集下载链接暂未开放。" : "The test dataset download link is not available yet.");
+    });
+
+    renderLang("zh");
+  </script>
+</body>
+</html>
